@@ -67,7 +67,7 @@ public class CharacterController : MonoBehaviour
     private void FixedUpdate()
     {
         Vector2 position = rigidbody2d.position;
-        int layerMask = 1 << 8;
+        int layerMask = 1 << gameObject.layer;
         layerMask = ~layerMask;
         RaycastHit2D hit = Physics2D.Linecast(new Vector2(transform.position.x, transform.position.y + 0.5f), new Vector2(targetPosition.x, targetPosition.y + 0.5f), layerMask);
 
@@ -84,7 +84,7 @@ public class CharacterController : MonoBehaviour
 
     private void Attacking()
     {
-        int layerMask = 1 << 8;
+        int layerMask = 1 << gameObject.layer;
         layerMask = ~layerMask;
         RaycastHit2D hit = Physics2D.Linecast(new Vector2(transform.position.x, transform.position.y + 0.5f), new Vector2(targetPosition.x + 1f * lookDirection.x, targetPosition.y + 0.5f + 1f * lookDirection.y), layerMask);
         Debug.DrawLine(new Vector2(transform.position.x, transform.position.y + 0.5f), new Vector2(targetPosition.x + 1f * lookDirection.x, targetPosition.y + 0.5f + 1f * lookDirection.y), Color.black);
