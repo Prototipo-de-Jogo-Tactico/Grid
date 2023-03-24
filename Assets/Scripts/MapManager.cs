@@ -31,8 +31,9 @@ public class MapManager : MonoBehaviour
     void Start()
     {
         littleBump = 0.0003f;
-        var tileMap = gameObject.GetComponentInChildren<Tilemap>();
+        var tileMap = gameObject.GetComponentsInChildren<Tilemap>()[0];
         map = new Dictionary<Vector2Int, GameObject>();
+
 
         BoundsInt bounds = tileMap.cellBounds;
 
@@ -44,7 +45,10 @@ public class MapManager : MonoBehaviour
                 {
                     var tileLocation = new Vector3Int(x, y, 0);
                     var tileKey = new Vector2Int(x, y);
-                    if (tileMap.HasTile(tileLocation) && !map.ContainsKey(tileKey))
+
+
+
+                    if (tileMap.HasTile(tileLocation) && !map.ContainsKey(tileKey) && tileMap.GetTile(tileLocation).name.ToLower().Contains("ground"))
                     {
                         var overlayTile = Instantiate(overlayPrefab, overlayContainer.transform);
                         var cellWorldPosition = tileMap.GetCellCenterWorld(tileLocation);

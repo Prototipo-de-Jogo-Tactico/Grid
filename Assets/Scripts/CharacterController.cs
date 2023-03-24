@@ -89,7 +89,7 @@ public class CharacterController : MonoBehaviour
         RaycastHit2D hit = Physics2D.Linecast(new Vector2(transform.position.x, transform.position.y + 0.5f), new Vector2(targetPosition.x + 1f * lookDirection.x, targetPosition.y + 0.5f + 1f * lookDirection.y), layerMask);
         Debug.DrawLine(new Vector2(transform.position.x, transform.position.y + 0.5f), new Vector2(targetPosition.x + 1f * lookDirection.x, targetPosition.y + 0.5f + 1f * lookDirection.y), Color.black);
 
-        if (hit.collider.tag == "Enemy")
+        if (hit && hit.collider.tag == "Enemy")
         {
             Debug.Log("hit!");
         }
